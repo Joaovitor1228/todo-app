@@ -13,6 +13,30 @@ app.use(express.static('public'))
 app.use(express.urlencoded({
     extended: true
 }))
+app.post('/limpartarefas',(requisicao, resposta)=>{
+    const sql ='DELETE * FROM tarefas'
+    conexao.query(sql,(erro)=>{
+        if (erro){
+            return console.log(erro)
+
+        }
+        response.redirect('/')
+    })
+})
+app.post('excluir', (requisicao, resposta) =>{
+    const id = requisicao.body
+
+    const sql = `
+              DELETE FROM tarefas
+              WHERE id ${id}
+    `
+    conexao.query(sql,(erro, dados)=>{
+        if (erro){
+            return console.log(erro)
+        }
+        resposta.redirect('/')
+    })
+})
 
 app.post('/completar', (requisicao, resposta)=>{
     const id = requisicao.body.id
@@ -64,6 +88,29 @@ app.post('/criar', (requisicao, resposta)=>{
         resposta.redirect('/')
     })
 })
+app.get('/completas'),(requisicao,resposta)=>{
+    const sql =`
+    SELECT * FROM tarefas
+    WHERE completa = 1
+
+`
+conexao.query(sql,(erro, dados)=>{
+    if (erro){
+        return console.log(erro)
+    }
+    const tarefas = dados.map((dado) =>{
+        return {
+            id: dado.id,
+            descricao: dado.descricao,
+            completa: true
+        }
+    })
+    const quantidadeTarefas = tarefas.length
+    resposta.render('completas', {tarefas, quantidadeTarefas})
+    
+})
+}
+
 
 app.get('/ativas', (requisicao,resposta)=>{
     const sql =`

@@ -120,6 +120,7 @@ main {
 }
 .completa label{
     text-decoration: line-through;
+    
 }
 .tarefas .tarefa{
     padding: 1rem 1.25rem;

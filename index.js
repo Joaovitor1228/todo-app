@@ -45,10 +45,13 @@ app.get('/', (requisicao, resposta) =>{
                 descricao: dado.descricao,
                 completa: dado.completa ===0 ? false : true
             }
+
+            
         })
+        resposta.render('home', {tarefas})
     })
 
-    resposta.render('home')
+    
 })
 const conexao = mysql.createConnection({
     host:"localhost",

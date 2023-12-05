@@ -116,6 +116,10 @@ main {
 }
 .tarefas .tarefa + .tarefa {
     border-top: 1px solid var(--border-color);
+
+}
+.completa label{
+    text-decoration: line-through;
 }
 .tarefas .tarefa{
     padding: 1rem 1.25rem;

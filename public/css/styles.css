@@ -103,7 +103,18 @@ main {
     font-size: 0.75rem;
     color: var(--info-text-color);
 }
-.informacoes a {
+.informacoes a,
+.botoes a {
     text-decoration: none;
     color: var(--info-text-color);
+}
+.botoes {
+    padding-block: 1rem;
+    background: var(--bg-tarefas);
+    border-radius: 0.3125rem;
+    margin-top: 1rem;
+    display: flex;
+    justify-content: center;
+    gap: 1.2rem;
+    font-size: 0.87rem;
 }
